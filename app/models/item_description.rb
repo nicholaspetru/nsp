@@ -1,5 +1,5 @@
 class ItemDescription < ApplicationRecord
-  belongs_to :photo
-  belongs_to :experience
+  has_one :photo
+  has_one :experience
   belongs_to :description
 end

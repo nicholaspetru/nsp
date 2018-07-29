@@ -4,13 +4,18 @@ module Api::V1
     before_action :set_cors_headers, only: [:show, :index]
 
     def index
-    @experiences = Experience.order(:id)
+      @experiences = Experience.order(:id)
 
-    render json: @experiences
-  end
+      render json: @experiences.pluck(:id)
+    end
 
   def show
-    render json: @experiences
+    @experience_facade = {
+      experience: @experience,
+      descriptions: @experience.descriptions
+    }
+
+    render json: @experience_facade
   end
 
   def create

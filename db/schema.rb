@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20180728213600) do
   enable_extension "plpgsql"
 
   create_table "descriptions", force: :cascade do |t|
-    t.string "type"
+    t.string "item_type"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180728213600) do
     t.bigint "photo_id"
     t.bigint "experience_id"
     t.bigint "description_id"
-    t.string "type"
+    t.string "item_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["description_id"], name: "index_item_descriptions_on_description_id"

@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ExperienceBlock from '../components/ExperienceBlock';
 
 class ExperiencesContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      experiences: []
-      }
+      experience_ids: []
+    }
   }
   componentDidMount() {
-    axios.get('http://localhost:3001/api/v1/experiences.json')
+    axios.get('api/v1/experiences')
     .then(response => {
       console.log(response)
       this.setState({
-        experiences: response.data
+        experience_ids: response.data
       })
     }).catch(error => console.log(error))
   }
   render() {
     return (
-      <div className="experiences-container">
-        {this.state.experiences.map( experience => {
+      <div className="experiences-container" style={{ maxWidth: '680px', margin: '0 auto' }}>
+        {this.state.experience_ids.map( experienceId => {
           return (
-            <div className="single-experience" key={experience.id}>
-              <h4>{experience.label}</h4>
-              <div>{experience.location}</div>
-              <div>{experience.position}</div>
-            </div>
+            <ExperienceBlock experienceId={experienceId} key={experienceId} />
           )
         })}
       </div>
